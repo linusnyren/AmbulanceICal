@@ -68,10 +68,6 @@ namespace AmbulanceICal.Mappers
 
         private static int GetWeek(GoogleSpreadSheetResponse model, int key)
         {
-            if(key == 145)
-            {
-                Console.WriteLine("hello");
-            }
             var weekIndex = 0;
             var weekRow = model.Table?.Rows?[weekIndex];
             var rowValue = weekRow.C?[key];
@@ -92,7 +88,6 @@ namespace AmbulanceICal.Mappers
 
             }
             //Check backwards for week
-
             for (int i = key; i > 0; --i)
             {
                 rowValue = weekRow.C?[i];
