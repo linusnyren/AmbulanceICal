@@ -25,6 +25,7 @@ namespace AmbulanceICal.Mappers
             var list = new List<SchemaModel>();
             foreach (var shift in shifts)
             {
+                Console.WriteLine($"{shift.Key} - {shift.Value}");
                 var week = GetWeek(model, shift.Key);
                 var day = GetDay(model, shift.Key);
                 var workHours = GetWorkHours(model, shift.Value);
@@ -67,18 +68,22 @@ namespace AmbulanceICal.Mappers
 
         private static int GetWeek(GoogleSpreadSheetResponse model, int key)
         {
+            if(key == 145)
+            {
+                Console.WriteLine("hello");
+            }
             var weekIndex = 0;
             var weekRow = model.Table?.Rows?[weekIndex];
             var rowValue = weekRow.C?[key];
             int week;
-            if (rowValue != null)
+            if (rowValue != null && rowValue.V != null)
             {
                 int.TryParse(rowValue.V, out week);
                 if (week != 0)
                     return week;
 
                 rowValue = weekRow.C?[key + 1];
-                if (rowValue != null)
+                if (rowValue != null && rowValue.V != null)
                 {
                     int.TryParse(rowValue.V, out week);
                     if (week != 0)
@@ -91,7 +96,7 @@ namespace AmbulanceICal.Mappers
             for (int i = key; i > 0; --i)
             {
                 rowValue = weekRow.C?[i];
-                if (rowValue != null)
+                if (rowValue != null && rowValue.V != null)
                 {
                     int.TryParse(rowValue.V, out week);
                     if (week != 0)

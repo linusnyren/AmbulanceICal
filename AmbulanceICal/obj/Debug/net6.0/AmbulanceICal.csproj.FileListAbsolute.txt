@@ -1,4 +1,3 @@
-/Users/LinusNyren/Projects/AmbulanceICal/AmbulanceICal/bin/Debug/net6.0/appsettings.Development.json
 /Users/LinusNyren/Projects/AmbulanceICal/AmbulanceICal/bin/Debug/net6.0/appsettings.json
 /Users/LinusNyren/Projects/AmbulanceICal/AmbulanceICal/bin/Debug/net6.0/AmbulanceICal
 /Users/LinusNyren/Projects/AmbulanceICal/AmbulanceICal/bin/Debug/net6.0/AmbulanceICal.deps.json

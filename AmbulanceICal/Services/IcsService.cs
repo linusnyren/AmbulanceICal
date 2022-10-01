@@ -81,6 +81,10 @@ namespace AmbulanceICal.Services
         {
             var week = model.Week;
             var year = DateTime.Now.ToString("yyyy");
+            var currentWeek = DateTime.Now.DayOfYear / 7;
+            if (week < (currentWeek - 20))
+                year = (int.Parse(year) + 1).ToString();
+
             var month = DateTime.ParseExact(
                 $"01/01-{year}",
                 "dd/MM-yyyy",
