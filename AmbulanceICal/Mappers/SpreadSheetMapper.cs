@@ -7,20 +7,20 @@ namespace AmbulanceICal.Mappers
     {
         public static List<SchemaModel> Map(GoogleSpreadSheetResponse model, string team, string vehicle)
         {
-            var schemaModels = GetSchemaModels(model, team);
+            var schemaModels = GetSchemaModels(model, team, vehicle);
 
             return schemaModels;
         }
 
-        private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, string team)
+        private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, string team, string vehicle)
         {
             int rowIndex = GetTeamRowIndex(model, team);
             var shifts = GetShiftsByRowIndex(model, rowIndex, team);
 
-            return GetSchemaModels(model, shifts, team);
+            return GetSchemaModels(model, shifts, team, vehicle);
         }
 
-        private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, Dictionary<int, string> shifts, string team)
+        private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, Dictionary<int, string> shifts, string team, string vehicle)
         {
             var list = new List<SchemaModel>();
             foreach (var shift in shifts)
@@ -31,7 +31,7 @@ namespace AmbulanceICal.Mappers
                 var workHours = GetWorkHours(model, shift.Value);
                 var dateModel = new SchemaModel
                 {
-                    Team = team,
+                    Team = $"{vehicle} - {team}",
                     Day = day,
                     Week = week,
                     WorkHours = workHours,
