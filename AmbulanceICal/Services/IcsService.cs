@@ -14,11 +14,8 @@ namespace AmbulanceICal.Services
     public class IcsService : IICsService
     {
         private readonly string authorText = "En tjänst av Linus Nyrén";
-        private readonly string description = "https://docs.google.com/spreadsheets/d/1MatU5bzu_DOBP2OX0kURe-hOgAa8SsFLAcZ5DCUr240/edit#gid=0";
-        public IcsService()
-        {
-            this.description = $"{authorText} \nSenast uppdaterad {DateTime.Now.ToString("MM/dd HH:mm")} \nLänk till Excel schemat: {description}";
-        }
+        private readonly string Url = "https://docs.google.com/spreadsheets/d/1MatU5bzu_DOBP2OX0kURe-hOgAa8SsFLAcZ5DCUr240/edit#gid=0";
+
         public string GenerateIcs(List<SchemaModel> schemaModels)
         {
             var calendar = new Calendar();
@@ -26,12 +23,24 @@ namespace AmbulanceICal.Services
             foreach (var model in schemaModels)
             {
                 CalendarEvent e = GetCalendarEvent(model);
-                e.Description = description;
+                e.Description = GetDescription();
                 calendar.Events.Add(e);
             }
 
             var serializer = new CalendarSerializer();
             return serializer.SerializeToString(calendar);
+        }
+
+        private string GetDescription()
+        {
+            var currentTimeInSweden = TimeZoneInfo.ConvertTime(
+                DateTimeOffset.UtcNow,
+                TimeZoneInfo.FindSystemTimeZoneById("Europe/Stockholm")
+                ).ToString("d/MM HH:mm");
+
+            var description = $"{authorText} \nSenast uppdaterad {currentTimeInSweden} \nLänk till Excel schemat: {Url}";
+
+            return description;
         }
 
         private static CalendarEvent GetCalendarEvent(SchemaModel model)
