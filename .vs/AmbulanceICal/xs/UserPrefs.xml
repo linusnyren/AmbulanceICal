@@ -1,0 +1,44 @@
+﻿<Properties StartupConfiguration="{EFB7AAEC-08A6-4EE2-B7ED-8BECAE91FD05}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AmbulanceICal/Program.cs">
+    <Files>
+      <File FileName="AmbulanceICal/Models/GoogleSpreadSheetResponse.cs" Line="15" Column="2" />
+      <File FileName="AmbulanceICal/Services/SchemaService.cs" Line="27" Column="1" />
+      <File FileName="AmbulanceICal/Services/GoogleSpreadSheetService.cs" Line="20" Column="64" />
+      <File FileName="AmbulanceICal/Configuration/SpreadSheetOptions.cs" Line="6" Column="17" />
+      <File FileName="AmbulanceICal/Services/IcsService.cs" Line="20" Column="49" />
+      <File FileName="AmbulanceICal/appsettings.json" Line="13" Column="1" />
+      <File FileName="AmbulanceICal/Program.cs" Line="6" Column="1" />
+      <File FileName="AmbulanceICal/AmbulanceICal.csproj" Line="1" Column="1" />
+      <File FileName="AmbulanceICal/Mappers/SpreadSheetMapper.cs" Line="65" Column="35" />
+      <File FileName="AmbulanceICal/Models/SchemaModel.cs" Line="10" Column="22" />
+      <File FileName="AmbulanceICal/Controllers/SchemaController.cs" Line="13" Column="1" />
+      <File FileName="AmbulanceICal/appsettings.Development.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AmbulanceICal" expanded="True">
+            <Node name="AmbulanceICal" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Mappers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.AmbulanceICal PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
