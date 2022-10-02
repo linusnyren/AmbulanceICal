@@ -1,5 +1,4 @@
-﻿using System;
-using AmbulanceICal.Models;
+﻿using AmbulanceICal.Models;
 
 namespace AmbulanceICal.Mappers
 {
@@ -14,10 +13,32 @@ namespace AmbulanceICal.Mappers
 
         private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, string team, string vehicle)
         {
-            int rowIndex = GetTeamRowIndex(model, team);
+            int vehicleRowIndex = GetVehicleRowIndex(model, vehicle);
+            int rowIndex = GetTeamRowIndex(model, team, vehicleRowIndex);
             var shifts = GetShiftsByRowIndex(model, rowIndex, team);
 
             return GetSchemaModels(model, shifts, team, vehicle);
+        }
+
+        private static int GetVehicleRowIndex(GoogleSpreadSheetResponse model, string vehicle)
+        {
+            int rowIndex = 0;
+            for (int i = 0; i < model.Table?.Rows?.Count; i++)
+            {
+                for (int j = 0; j < model.Table?.Rows?[i].C?.Count; j++)
+                {
+                    var value = model.Table?.Rows?[i].C?[j];
+                    if (value != null && value.V != null && value.V.Contains(vehicle))
+                    {
+                        if (value.V.Contains(vehicle))
+                        {
+                            return i;
+                        }
+                    }
+                }
+            }
+
+            return rowIndex;
         }
 
         private static List<SchemaModel> GetSchemaModels(GoogleSpreadSheetResponse model, Dictionary<int, string> shifts, string team, string vehicle)
@@ -45,14 +66,17 @@ namespace AmbulanceICal.Mappers
 
         private static string GetWorkHours(GoogleSpreadSheetResponse model, string value)
         {
-            for (int i = 56; i < 70; i++)
+            for (int i = 40; i < 70; i++)
             {
                 var row = model.Table?.Rows?[i];
-                var identifier = row?.C?[1].V;
-                if (identifier != null && identifier.Contains(value))
+                if(row != null && row.C?[1] != null)
                 {
-                    var hours = row?.C?[3].V;
-                    return hours;
+                    var identifier = row?.C?[1].V;
+                    if (identifier != null && identifier.Contains(value))
+                    {
+                        var hours = row?.C?[3].V;
+                        return hours;
+                    }
                 }
             }
             return "";
@@ -122,10 +146,10 @@ namespace AmbulanceICal.Mappers
             return values;
         }
 
-        private static int GetTeamRowIndex(GoogleSpreadSheetResponse model, string team)
+        private static int GetTeamRowIndex(GoogleSpreadSheetResponse model, string team, int vehicleRowIndex)
         {
             int rowIndex = 0;
-            for (int i = 0; i < model.Table?.Rows?.Count; i++)
+            for (int i = vehicleRowIndex; i < model.Table?.Rows?.Count; i++)
             {
                 for (int j = 0; j < model.Table?.Rows?[i].C?.Count; j++)
                 {

@@ -53,6 +53,7 @@ namespace AmbulanceICal.Services
 
         private static CalendarEvent GetEvent(SchemaModel model)
         {
+            model.WorkHours = model.WorkHours.Replace(" ", "");
             var startHour = model.WorkHours.Substring(0, 5);
             var endHour = model.WorkHours.Substring(6);
 
