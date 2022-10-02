@@ -1,0 +1,27 @@
+
+<div class="container">
+  <mat-card>
+
+    <form [formGroup]="reactiveForm" ovalidate>
+ 
+      <p>
+        <label for="schemaId">SchemaId </label>
+        <input type="text" id="schemaId" name="schemaId" formControlName="schemaId">
+      </p>
+   
+      <p>
+        <label for="vehicle">Vehicle </label>
+        <input type="text" id="vehicle" name="vehicle" formControlName="vehicle">
+      </p>
+   
+      <p>
+        <label for="team">Team </label>
+        <input type="text" id="team" name="team" formControlName="team">
+      </p>
+   </form>
+   <button type="submit" (click)="onSubmit()" mat-button><mat-icon>add</mat-icon>Hämta kalender länk </button>
+  <div *ngIf="(calendarFile$ | async)">
+   <a mat-raised-button [href]="sanitize(calendarUrl)" target="_blank"><mat-icon>calendar</mat-icon>Prenumerera</a>
+  </div>
+  </mat-card>
+</div>
