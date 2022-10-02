@@ -6,23 +6,21 @@ namespace AmbulanceICal.Services
 {
     public interface IGoogleSpreadSheetService
     {
-        Task<string> GetSpreadSheetAsync();
+        Task<string> GetSpreadSheetAsync(string sheet);
     }
     public class GoogleSpreadSheetService : IGoogleSpreadSheetService
 	{
         private readonly HttpClient httpClient;
-        private readonly IOptions<SpreadSheetOptions> options;
 
         public GoogleSpreadSheetService(HttpClient httpClient, IOptions<SpreadSheetOptions> options)
 		{
             this.httpClient = httpClient;
-            this.options = options;
             this.httpClient.BaseAddress = new Uri(options.Value.BaseUrl);
         }
 
-        public async Task<string> GetSpreadSheetAsync()
+        public async Task<string> GetSpreadSheetAsync(string sheet)
         {
-            var uri = $"tq?tqx=out:json&sheet={options.Value.SpreadSheetName}";
+            var uri = $"tq?tqx=out:json&gid={sheet}";
             var res = await httpClient.GetAsync(uri);
             res.EnsureSuccessStatusCode();
 

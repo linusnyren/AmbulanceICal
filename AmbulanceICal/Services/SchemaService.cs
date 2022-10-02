@@ -7,7 +7,7 @@ namespace AmbulanceICal.Services
 {
     public interface ISchemaService
     {
-        Task<string> GetSchemaAsync(string team, string vehicle);
+        Task<string> GetSchemaAsync(string sheet, string team, string vehicle);
     }
 
     public class SchemaService : ISchemaService
@@ -22,9 +22,9 @@ namespace AmbulanceICal.Services
             this.icsService = icsService;
         }
 
-        public async Task<string> GetSchemaAsync(string team, string vehicle)
+        public async Task<string> GetSchemaAsync(string sheet, string team, string vehicle)
         {
-            var spreadSheet = await spreadSheetService.GetSpreadSheetAsync();
+            var spreadSheet = await spreadSheetService.GetSpreadSheetAsync(sheet);
             var cleanedResponse = CleanResponse(spreadSheet);
             var model = JsonSerializer.Deserialize<GoogleSpreadSheetResponse>(cleanedResponse, serializerOptions);
 

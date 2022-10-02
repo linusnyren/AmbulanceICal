@@ -46,7 +46,6 @@ namespace AmbulanceICal.Mappers
             var list = new List<SchemaModel>();
             foreach (var shift in shifts)
             {
-                Console.WriteLine($"{shift.Key} - {shift.Value}");
                 var week = GetWeek(model, shift.Key);
                 var day = GetDay(model, shift.Key);
                 var workHours = GetWorkHours(model, shift.Value);
@@ -66,7 +65,8 @@ namespace AmbulanceICal.Mappers
 
         private static string GetWorkHours(GoogleSpreadSheetResponse model, string value)
         {
-            for (int i = 40; i < 70; i++)
+            var rowCount = model.Table?.Rows?.Count;
+            for (int i = 30; i < rowCount; i++)
             {
                 var row = model.Table?.Rows?[i];
                 if(row != null && row.C?[1] != null)

@@ -17,10 +17,11 @@ public class SchemaController : ControllerBase
         this.schemaService = schemaService;
     }
 
-    [HttpGet("{vehicle}/{team}")]
-    public async Task<string> Get(string vehicle, string team)
+    [HttpGet("{sheetId}/{vehicle}/{team}")]
+    public async Task<string> Get(string sheetId, string vehicle, string team)
     {
-        return await schemaService.GetSchemaAsync(team, vehicle);
+        team = team.Replace("-", " ");
+        return await schemaService.GetSchemaAsync(sheetId, team, vehicle);
     }
 }
 
