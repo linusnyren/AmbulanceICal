@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   backend:
-    image: linusnyren/ambulanceical:backend:latest
+    image: linusnyren/ambulanceical:backend
     ports:
       - "8080:5000"
     restart: unless-stopped
 
   frontend:
-    image: linusnyren/ambulanceical:frontend:latest
+    image: linusnyren/ambulanceical:frontend
     ports:
       - "80:80"
     depends_on:

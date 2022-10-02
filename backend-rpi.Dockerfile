@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim-arm64v8 AS build
 WORKDIR /app
 
 # Prevent 'Warning: apt-key output should not be parsed (stdout is not a terminal)'
@@ -13,7 +13,7 @@ COPY ./AmbulanceICal/appsettings.json /app/appsettings.json
 RUN dotnet publish AmbulanceICal.sln -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+FROM mcr.microsoft.com/dotnet/runtime:6.0-bullseye-slim-arm64v8 as runtime
 WORKDIR /app
 COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "/app/out/AmbulanceICal.dll"]
