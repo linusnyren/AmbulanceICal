@@ -1,13 +1,17 @@
 version: '3.8'
 services:
   backend:
-    image: linusnyren/ambulanceical:backend
+    build:
+      context: ./
+      dockerfile: backend.Dockerfile
     ports:
       - "8080:5000"
     restart: unless-stopped
 
   frontend:
-    image: linusnyren/ambulanceical:frontend
+    build:
+      context: ./
+      dockerfile: frontend.Dockerfile
     ports:
       - "80:80"
     depends_on:
