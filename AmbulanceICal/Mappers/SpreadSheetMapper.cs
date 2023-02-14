@@ -4,6 +4,9 @@ namespace AmbulanceICal.Mappers
 {
     public static class SpreadSheetMapper
     {
+        public const int WORK_HOUR_ROW_START = 57;
+
+
         public static List<SchemaModel> Map(GoogleSpreadSheetResponse model, string team, string vehicle)
         {
             var schemaModels = GetSchemaModels(model, team, vehicle);
@@ -66,7 +69,7 @@ namespace AmbulanceICal.Mappers
         private static string GetWorkHours(GoogleSpreadSheetResponse model, string value)
         {
             var rowCount = model.Table?.Rows?.Count;
-            for (int i = 30; i < rowCount; i++)
+            for (int i = WORK_HOUR_ROW_START; i < rowCount; i++)
             {
                 var row = model.Table?.Rows?[i];
                 if(row != null && row.C?[1] != null)
