@@ -28,7 +28,7 @@ namespace AmbulanceICal.Services
             var cleanedResponse = CleanResponse(spreadSheet);
             var model = JsonSerializer.Deserialize<GoogleSpreadSheetResponse>(cleanedResponse, serializerOptions);
 
-            var schemaModels = SpreadSheetMapper.Map(model, team, vehicle);
+            var schemaModels = SpreadSheetMapper.Map(model!, team, vehicle);
             schemaModels = FilterWeeks(schemaModels);
 
             return icsService.GenerateIcs(schemaModels);

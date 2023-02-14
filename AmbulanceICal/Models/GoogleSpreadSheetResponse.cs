@@ -13,12 +13,12 @@ public class GoogleSpreadSheetResponse
 
 public class Table
 {
-    public List<Col>? Cols { get; set; }
+    public List<Column>? Columns { get; set; }
     public List<Row>? Rows { get; set; }
     public int ParsedNumHeaders { get; set; }
 }
 
-public class Col
+public class Column
 {
     public string? Id { get; set; }
     public string? Label { get; set; }

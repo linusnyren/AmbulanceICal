@@ -14,7 +14,7 @@ namespace AmbulanceICal.Services
     public class IcsService : IICsService
     {
         private readonly string authorText = "En tjänst av Linus Nyrén";
-        private readonly string Url = "https://docs.google.com/spreadsheets/d/1MatU5bzu_DOBP2OX0kURe-hOgAa8SsFLAcZ5DCUr240/edit#gid=0";
+        private readonly string Url = "https://docs.google.com/spreadsheets/d/1_bXhUAxIPAzmGCaF5W5e5lSiU2NvQvtZ8yQN2WE-qcM/edit#gid=0";
 
         public string GenerateIcs(List<SchemaModel> schemaModels)
         {
